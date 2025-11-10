@@ -13,228 +13,101 @@
       margin: 0;
       padding: 0;
     }
-
     header {
       background-color: #222;
       color: #fff;
       padding: 20px;
       text-align: center;
       font-size: 1.5em;
-      letter-spacing: 1px;
     }
-
-    header h1 {
-      font-size: 2em;
-      text-transform: uppercase;
-      animation: glitch 1s infinite;
-    }
-
-    @keyframes glitch {
-      0% { text-shadow: 2px 0 red, -2px 0 blue; }
-      20% { text-shadow: -2px 0 red, 2px 0 blue; }
-      40% { text-shadow: 2px 0 blue, -2px 0 red; }
-      60% { text-shadow: -2px 0 blue, 2px 0 red; }
-      80% { text-shadow: 2px 0 red, -2px 0 blue; }
-      100% { text-shadow: -2px 0 red, 2px 0 blue; }
-    }
-
-    @keyframes flicker {
-      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
-      20%, 24%, 55% { opacity: 0.8; }
-    }
-
     form {
       max-width: 600px;
       margin: 20px auto;
       padding: 20px;
       background: #fff;
       border: 2px solid #000;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
     }
-
-    label {
-      font-weight: bold;
-      display: block;
-      margin-top: 10px;
-    }
-
+    label { display: block; margin-top: 10px; font-weight: bold; }
     input, select, textarea {
-      width: 100%;
-      margin-top: 5px;
-      padding: 8px;
-      font-family: 'Courier New', monospace;
-      border: 1px solid #000;
-      box-sizing: border-box;
+      width: 100%; margin-top: 5px; padding: 8px; border: 1px solid #000;
     }
-
     button {
-      background-color: #222;
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      cursor: pointer;
-      margin-top: 20px;
-      font-family: 'Courier New', monospace;
+      background-color: #222; color: #fff; padding: 10px 20px; margin-top: 20px;
+      border: none; cursor: pointer;
     }
-
-    button:hover {
-      background-color: #444;
-    }
-
-    h3 {
-      margin-top: 20px;
-      border-top: 1px solid #000;
-      padding-top: 10px;
-    }
-
-    /* Glitch overlay */
     #glitch-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: black;
-      color: red;
-      font-size: 4em;
-      font-weight: bold;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    @keyframes glitchText {
-      0%, 100% { transform: translate(0, 0); }
-      20% { transform: translate(-5px, 2px); }
-      40% { transform: translate(5px, -2px); }
-      60% { transform: translate(-3px, 3px); }
-      80% { transform: translate(3px, -3px); }
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: black; color: red; font-size: 4em; font-weight: bold;
+      display: flex; justify-content: center; align-items: center;
+      opacity: 0; z-index: 9999;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Missing Person Report</h1>
-  </header>
-
+  <header><h1>Missing Person Report</h1></header>
   <form id="report-form">
     <h2>Department of Public Safety</h2>
     <p>Case Number: <span id="case-number"></span></p>
-
-    <label for="name">Full Name:</label>
-    <input type="text" name="name" id="name" required>
-
-    <label for="age">Age:</label>
-    <input type="number" name="age" id="age" required>
-
-    <label for="location">Last Seen Location:</label>
-    <input type="text" name="location" id="location" required>
-
-    <label for="description">General Description:</label>
-    <textarea name="description" id="description" rows="3"></textarea>
-
+    <label for="name">Full Name:</label><input type="text" id="name" name="name" required>
+    <label for="age">Age:</label><input type="number" id="age" name="age" required>
+    <label for="location">Last Seen Location:</label><input type="text" id="location" name="location" required>
+    <label for="description">General Description:</label><textarea id="description" name="description"></textarea>
     <h3>Physical Description</h3>
     <label for="hair-color">Hair Color:</label>
-    <select name="hair-color" id="hair-color">
-      <option value="black">Black</option>
-      <option value="brown">Brown</option>
-      <option value="blonde">Blonde</option>
-      <option value="red">Red</option>
-      <option value="gray">Gray</option>
-    </select>
-
+    <select id="hair-color" name="hair-color"><option>Black</option><option>Brown</option><option>Blonde</option><option>Red</option><option>Gray</option></select>
     <label for="eye-color">Eye Color:</label>
-    <select name="eye-color" id="eye-color">
-      <option value="brown">Brown</option>
-      <option value="blue">Blue</option>
-      <option value="green">Green</option>
-      <option value="gray">Gray</option>
-      <option value="hazel">Hazel</option>
-    </select>
-
+    <select id="eye-color" name="eye-color"><option>Brown</option><option>Blue</option><option>Green</option><option>Gray</option><option>Hazel</option></select>
     <label for="build">Build:</label>
-    <select name="build" id="build">
-      <option value="slim">Slim</option>
-      <option value="average">Average</option>
-      <option value="athletic">Athletic</option>
-      <option value="heavy">Heavy</option>
-    </select>
-
-    <label for="height-feet">Height (Feet):</label>
-    <input type="number" name="height-feet" id="height-feet" min="1" max="8">
-
-    <label for="height-inches">Height (Inches):</label>
-    <input type="number" name="height-inches" id="height-inches" min="0" max="11">
-
+    <select id="build" name="build"><option>Slim</option><option>Average</option><option>Athletic</option><option>Heavy</option></select>
+    <label for="height-feet">Height (Feet):</label><input type="number" id="height-feet" name="height-feet">
+    <label for="height-inches">Height (Inches):</label><input type="number" id="height-inches" name="height-inches">
     <h3>Characteristics</h3>
-    <label for="physiology">Physiology:</label>
-    <input type="text" name="physiology" id="physiology">
-
-    <label for="intelligence">Intelligence:</label>
-    <input type="text" name="intelligence" id="intelligence">
-
-    <label for="heart">Heart:</label>
-    <input type="text" name="heart" id="heart">
-
-    <label for="soul">Soul:</label>
-    <input type="text" name="soul" id="soul">
-
+    <label for="physiology">Physiology:</label><input type="text" id="physiology" name="physiology">
+    <label for="intelligence">Intelligence:</label><input type="text" id="intelligence" name="intelligence">
+    <label for="heart">Heart:</label><input type="text" id="heart" name="heart">
+    <label for="soul">Soul:</label><input type="text" id="soul" name="soul">
     <button type="submit">Generate PDF</button>
   </form>
-
   <div id="glitch-overlay">DON'T LOOK FOR THEM</div>
 
   <!-- jsPDF Library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libsjspdf.umd.min.js</script>
+  https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js
   <script>
-    // Generate Case Number
     const caseNumber = "CASE-" + Math.floor(100000 + Math.random() * 900000);
     document.getElementById('case-number').textContent = caseNumber;
 
-    // PDF Generation
     document.getElementById('report-form').addEventListener('submit', function(e) {
       e.preventDefault();
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
       doc.setFont("courier", "normal");
       doc.setFontSize(14);
-
       doc.text("Department of Public Safety", 20, 20);
       doc.text("Missing Person Report", 20, 30);
       doc.text(`Case Number: ${caseNumber}`, 20, 40);
-
       doc.text(`Name: ${e.target.name.value}`, 20, 60);
       doc.text(`Age: ${e.target.age.value}`, 20, 70);
       doc.text(`Location: ${e.target.location.value}`, 20, 80);
       doc.text(`Description: ${e.target.description.value}`, 20, 90);
-
       doc.text(`Hair: ${e.target['hair-color'].value}`, 20, 110);
       doc.text(`Eyes: ${e.target['eye-color'].value}`, 20, 120);
       doc.text(`Build: ${e.target.build.value}`, 20, 130);
       doc.text(`Height: ${e.target['height-feet'].value}' ${e.target['height-inches'].value}"`, 20, 140);
-
       doc.text(`Physiology: ${e.target.physiology.value}`, 20, 160);
       doc.text(`Intelligence: ${e.target.intelligence.value}`, 20, 170);
       doc.text(`Heart: ${e.target.heart.value}`, 20, 180);
       doc.text(`Soul: ${e.target.soul.value}`, 20, 190);
-
       doc.save(`${caseNumber}_report.pdf`);
     });
 
-    // Glitch effect every 15 minutes
     function triggerGlitch() {
       const overlay = document.getElementById('glitch-overlay');
       overlay.style.opacity = '1';
       overlay.style.animation = 'glitchText 0.2s infinite';
-
       document.body.style.backgroundColor = 'red';
       document.body.style.color = 'black';
       document.querySelector('header').style.backgroundColor = 'black';
       document.querySelector('header').style.color = 'red';
-
       setTimeout(() => {
         overlay.style.opacity = '0';
         overlay.style.animation = 'none';
@@ -244,7 +117,6 @@
         document.querySelector('header').style.color = '#fff';
       }, 5000);
     }
-
     setInterval(triggerGlitch, 15 * 60 * 1000);
   </script>
 </body>
