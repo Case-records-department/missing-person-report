@@ -11,6 +11,9 @@ document.getElementById('report-form').addEventListener('submit', function(e) {
     age: e.target.age.value,
     location: e.target.location.value,
     description: e.target.description.value,
+    hairColor: e.target['hair-color'].value,
+    eyeColor: e.target['eye-color'].value,
+    build: e.target['build'].value,
     physiology: e.target.physiology.value,
     intelligence: e.target.intelligence.value,
     heart: e.target.heart.value,
@@ -19,7 +22,6 @@ document.getElementById('report-form').addEventListener('submit', function(e) {
 
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
-
   doc.setFont("courier", "normal");
   doc.setFontSize(14);
 
@@ -47,12 +49,17 @@ document.getElementById('report-form').addEventListener('submit', function(e) {
   doc.text(`Last Seen: ${data.location}`, 20, 110);
   doc.text(`Description: ${data.description}`, 20, 120);
 
+  // Physical Description
+  doc.text(`Hair Color: ${data.hairColor}`, 20, 130);
+  doc.text(`Eye Color: ${data.eyeColor}`, 20, 135);
+  doc.text(`Build: ${data.build}`, 20, 140);
+
   // Characteristics
-  doc.text("Characteristics:", 20, 140);
-  doc.text(`Physiology: ${data.physiology}`, 20, 150);
-  doc.text(`Intelligence: ${data.intelligence}`, 20, 160);
-  doc.text(`Heart: ${data.heart}`, 20, 170);
-  doc.text(`Soul: ${data.soul}`, 20, 180);
+  doc.text("Characteristics:", 20, 150);
+  doc.text(`Physiology: ${data.physiology}`, 20, 160);
+  doc.text(`Intelligence: ${data.intelligence}`, 20, 170);
+  doc.text(`Heart: ${data.heart}`, 20, 180);
+  doc.text(`Soul: ${data.soul}`, 20, 190);
 
   // CONFIDENTIAL Stamp
   doc.setTextColor(255, 0, 0); // Red color
@@ -62,7 +69,7 @@ document.getElementById('report-form').addEventListener('submit', function(e) {
 
   // Creepy Disclaimer
   doc.setFontSize(10);
-  doc.text("NOTICE: This document is classified. Unauthorized disclosure is punishable by law.", 20, 200);
+  doc.text("NOTICE: This document is classified. Unauthorized disclosure is punishable by law.", 20, 210);
 
   doc.save(`${data.caseNumber}_report.pdf`);
 });
