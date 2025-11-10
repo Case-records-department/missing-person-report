@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Missing Person Report</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Missing Person Report</h1>
+    <p>Department of Public Safety</p>
+  </header>
+
+  <form id="report-form">
+    <p><strong>Case Number:</strong> <span id="case-number"></span></p>
+
+    <label>Full Name:</label>
+    <input type="text" name="name" required><br><br>
+
+    <label>Age:</label>
+    <input type="number" name="age" required><br><br>
+
+    <label>Last Seen Location:</label>
+    <input type="text" name="location" required><br><br>
+
+    <label>Physical Description:</label>
+    <textarea name="description" required></textarea><br><br>
+
+    <h3>Characteristics</h3>
+    <label>Physiology:</label>
+    <input type="number" name="physiology" min="0" max="10"><br><br>
+
+    <label>Intelligence:</label>
+    <input type="number" name="intelligence" min="0" max="10"><br><br>
+
+    <label>Heart:</label>
+    <input type="number" name="heart" min="0" max="10"><br><br>
+
+    <label>Soul:</label>
+    <input type="number" name="soul" min="0" max="10"><br><br>
+
+    <button type="submit">Generate PDF</button>
+  </form>
+
+  <!-- jsPDF Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
