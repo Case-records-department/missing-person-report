@@ -60,7 +60,4 @@ document.getElementById('report-form').addEventListener('submit', function(e) {
   doc.text("NOTICE: This document is classified. Unauthorized disclosure is punishable by law.", 20, 200);
 
   doc.save(`${data.caseNumber}_report.pdf`);
-});d. Unauthorized disclosure is punishable by law.", 20, 200);
-
-  doc.save(`${data.caseNumber}_report.pdf`);
 });
