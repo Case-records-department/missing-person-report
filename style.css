@@ -13,6 +13,36 @@ header {
   letter-spacing: 1px;
 }
 
+/* Glitch effect for header text */
+header h1 {
+  position: relative;
+  color: #fff;
+  font-size: 2em;
+  text-transform: uppercase;
+  animation: glitch 1s infinite;
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 2px 0 red, -2px 0 blue;
+  }
+  20% {
+    text-shadow: -2px 0 red, 2px 0 blue;
+  }
+  40% {
+    text-shadow: 2px 0 blue, -2px 0 red;
+  }
+  60% {
+    text-shadow: -2px 0 blue, 2px 0 red;
+  }
+  80% {
+    text-shadow: 2px 0 red, -2px 0 blue;
+  }
+  100% {
+    text-shadow: -2px 0 red, 2px 0 blue;
+  }
+}
+
 form {
   max-width: 600px;
   margin: 20px auto;
