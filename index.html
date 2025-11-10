@@ -4,7 +4,94 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Missing Person Report</title>
-  style.css
+  <style>
+    /* Body styling with government-style yellow and flicker effect */
+    body {
+      font-family: 'Courier New', monospace;
+      background-color: #fdf6d3; /* Pale government yellow */
+      color: #111;
+      animation: flicker 3s infinite;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #222;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.5em;
+      letter-spacing: 1px;
+    }
+
+    /* Glitch effect for header text */
+    header h1 {
+      position: relative;
+      color: #fff;
+      font-size: 2em;
+      text-transform: uppercase;
+      animation: glitch 1s infinite;
+    }
+
+    @keyframes glitch {
+      0% { text-shadow: 2px 0 red, -2px 0 blue; }
+      20% { text-shadow: -2px 0 red, 2px 0 blue; }
+      40% { text-shadow: 2px 0 blue, -2px 0 red; }
+      60% { text-shadow: -2px 0 blue, 2px 0 red; }
+      80% { text-shadow: 2px 0 red, -2px 0 blue; }
+      100% { text-shadow: -2px 0 red, 2px 0 blue; }
+    }
+
+    /* Flicker effect for body */
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+      20%, 24%, 55% { opacity: 0.8; }
+    }
+
+    form {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border: 2px solid #000;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      margin-top: 5px;
+      padding: 8px;
+      font-family: 'Courier New', monospace;
+      border: 1px solid #000;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #222;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+      font-family: 'Courier New', monospace;
+    }
+
+    button:hover {
+      background-color: #444;
+    }
+
+    h3 {
+      margin-top: 20px;
+      border-top: 1px solid #000;
+      padding-top: 10px;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -17,7 +104,7 @@
 
     <!-- Basic Info -->
     <label for="name">Full Name:</label>
-   input type="text" name="name" id="name" required>
+    <input type="text" name="name" id="name" required>
 
     <label for="age">Age:</label>
     <input type="number" name="age" id="age" required>
@@ -81,12 +168,7 @@
   </form>
 
   <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jpdf.umd.min.js</script>
-  script.js</script>
-</body>
-</html>
-  <!-- Scripts -->
-  <script src="https://cdnjs.cloudflares/jspdf/2.5.1/jspdf.umd.min.js</script>
+  https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js
   script.js</script>
 </body>
 </html>
