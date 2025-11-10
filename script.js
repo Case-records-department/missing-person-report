@@ -28,10 +28,13 @@ document.getElementById('report-form').addEventListener('submit', function(e) {
   doc.text("Missing Person Report", 20, 30);
   doc.text(`Case Number: ${data.caseNumber}`, 20, 40);
 
-  // Redacted fields
-  doc.text("Officer: █████████████", 20, 50);
-  doc.text("Date: █████████████", 20, 60);
-  doc.text("Location: █████████████", 20, 70);
+  // Redacted fields with black bars
+  doc.text("Officer:", 20, 50);
+  doc.rect(50, 45, 100, 10, "F"); // Black bar
+  doc.text("Date:", 20, 60);
+  doc.rect(50, 55, 100, 10, "F");
+  doc.text("Location:", 20, 70);
+  doc.rect(60, 65, 100, 10, "F");
 
   // Victim Info
   doc.text(`Name: ${data.name}`, 20, 90);
@@ -46,9 +49,18 @@ document.getElementById('report-form').addEventListener('submit', function(e) {
   doc.text(`Heart: ${data.heart}`, 20, 170);
   doc.text(`Soul: ${data.soul}`, 20, 180);
 
+  // CONFIDENTIAL Stamp
+  doc.setTextColor(255, 0, 0); // Red color
+  doc.setFontSize(40);
+  doc.text("CONFIDENTIAL", 35, 120, { angle: 45 });
+  doc.setTextColor(0, 0, 0); // Reset to black
+
   // Creepy Disclaimer
   doc.setFontSize(10);
   doc.text("NOTICE: This document is classified. Unauthorized disclosure is punishable by law.", 20, 200);
+
+  doc.save(`${data.caseNumber}_report.pdf`);
+});d. Unauthorized disclosure is punishable by law.", 20, 200);
 
   doc.save(`${data.caseNumber}_report.pdf`);
 });
