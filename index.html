@@ -91,6 +91,35 @@
       border-top: 1px solid #000;
       padding-top: 10px;
     }
+
+    /* Glitch overlay */
+    #glitch-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      color: red;
+      font-size: 4em;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      animation: none;
+    }
+
+    @keyframes glitchText {
+      0%, 100% { transform: translate(0, 0); }
+      20% { transform: translate(-5px, 2px); }
+      40% { transform: translate(5px, -2px); }
+      60% { transform: translate(-3px, 3px); }
+      80% { transform: translate(3px, -3px); }
+    }
   </style>
 </head>
 <body>
@@ -138,8 +167,7 @@
 
     <label for="build">Build:</label>
     <select name="build" id="build">
-      <option value="slim">Slim</option>
-      <option value="average">Average</option>
+      <option value="slim">Slim</option value="average">Average</option>
       <option value="athletic">Athletic</option>
       <option value="heavy">Heavy</option>
     </select>
@@ -167,8 +195,40 @@
     <button type="submit">Generate PDF</button>
   </form>
 
+  <!-- Glitch Overlay -->
+  <div id="glitch-overlay">DON'T LOOK FOR THEM</div>
+
   <!-- Scripts -->
-  https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js
-  script.js</script>
+  https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js</script>
+  <script>
+    // Generate Case Number
+    const caseNumber = "CASE-" + Math.floor(100000 + Math.random() * 900000);
+    document.getElementById('case-number').textContent = caseNumber;
+
+    // Glitch effect every 15 minutes
+    function triggerGlitch() {
+      const overlay = document.getElementById('glitch-overlay');
+      overlay.style.opacity = '1';
+      overlay.style.animation = 'glitchText 0.2s infinite';
+
+      // Change colors
+      document.body.style.backgroundColor = 'red';
+      document.body.style.color = 'black';
+      document.querySelector('header').style.backgroundColor = 'black';
+      document.querySelector('header').style.color = 'red';
+
+      // After 5 seconds, revert
+      setTimeout(() => {
+        overlay.style.opacity = '0';
+        overlay.style.animation = 'none';
+        document.body.style.backgroundColor = '#fdf6d3';
+        document.body.style.color = '#111';
+        document.querySelector('header').style.backgroundColor = '#222';
+        document.querySelector('header').style.color = '#fff';
+      }, 5000);
+    }
+
+    setInterval(triggerGlitch, 15 * 60 * 1000); // Every 15 minutes
+  </script>
 </body>
 </html>
