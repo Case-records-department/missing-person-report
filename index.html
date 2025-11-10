@@ -1,59 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Missing Person Report</title>
-    <style>
-        body {
-            font-family: 'Courier New', Courier, monospace;
-            background-color: #111;
-            color: #eee;
-            padding: 20px;
-        }
-        h1, h2 {
-            color: #ff0000;
-            text-align: center;
-        }
-        form {
-            max-width: 600px;
-            margin: 0 auto;
-            background: #222;
-            padding: 20px;
-            border: 2px solid #ff0000;
-            border-radius: 8px;
-        }
-        label {
-            display: block;
-            margin-top: 10px;
-        }
-        input, textarea {
-            width: 100%;
-            padding: 8px;
-            margin-top: 4px;
-            background: #333;
-            color: #fff;
-            border: 1px solid #555;
-        }
-        button {
-            margin-top: 20px;
-            padding: 10px;
-            width: 100%;
-            background: #ff0000;
-            color: #fff;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #cc0000;
-        }
-        .case-number {
-            text-align: center;
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Missing Person Report</title>
+<style>
+    body {
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #000;
+        color: #0f0;
+        padding: 20px;
+        animation: flicker 1.5s infinite;
+    }
+    h1, h2 {
+        color: #f00;
+        text-align: center;
+        text-shadow: 0 0 10px #f00;
+    }
+    form {
+        max-width: 600px;
+        margin: 0 auto;
+        background: #111;
+        padding: 20px;
+        border: 2px solid #f00;
+        border-radius: 8px;
+    }
+    label {
+        display: block;
+        margin-top: 10px;
+    }
+    input, textarea {
+        width: 100%;
+        padding: 8px;
+        margin-top: 4px;
+        background: #222;
+        color: #0f0;
+        border: 1px solid #555;
+    }
+    button {
+        margin-top: 20px;
+        padding: 10px;
+        width: 100%;
+        background: #f00;
+        color: #fff;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+    button:hover {
+        background: #900;
+    }
+    .case-number {
+        text-align: center;
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+    @keyframes flicker {
+        0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+        20%, 24%, 55% { opacity: 0.8; }
+        22%, 26% { opacity: 0.6; }
+    }
+    #glitch-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        color: #000;
+        font-size: 50px;
+        font-weight: bold;
+        text-align: center;
+        padding-top: 20%;
+        z-index: 9999;
+    }
+</style>
 </head>
 <body>
     <h1>Department of Public Safety</h1>
@@ -62,49 +84,44 @@
     <form id="report-form">
         <label for="name">Full Name:</label>
         <input type="text" name="name" required>
-
         <label for="age">Age:</label>
         <input type="number" name="age" required>
-
         <label for="location">Last Seen Location:</label>
         <input type="text" name="location" required>
-
         <label for="description">General Description:</label>
         <textarea name="description" rows="3" required></textarea>
-
         <label for="hair-color">Hair Color:</label>
         <input type="text" name="hair-color">
-
         <label for="eye-color">Eye Color:</label>
         <input type="text" name="eye-color">
-
         <label for="build">Build:</label>
         <input type="text" name="build">
-
         <label for="height-feet">Height (Feet):</label>
         <input type="number" name="height-feet">
-
         <label for="height-inches">Height (Inches):</label>
         <input type="number" name="height-inches">
-
         <label for="physiology">Physiology:</label>
         <input type="text" name="physiology">
-
         <label for="intelligence">Intelligence:</label>
         <input type="text" name="intelligence">
-
         <label for="heart">Heart:</label>
         <input type="text" name="heart">
-
         <label for="soul">Soul:</label>
         <input type="text" name="soul">
-
         <button type="submit">Generate PDF</button>
     </form>
-
-    <!-- Include jsPDF library -->
+    <div id="glitch-overlay">DON'T LOOK FOR THEM</div>
     https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js</script>
-    <!-- Include your script -->
-    <cript (2).js</script>
+    <script src="</script>
+    <script>
+        setInterval(() => {
+            document.body.style.filter = 'invert(1)';
+            const overlay = document.getElementById('glitch-overlay');
+            overlay.style.display = 'block';
+            setTimeout(() => {
+                document.body.style.filter = 'invert(0)';
+                overlay.style.display = 'none';
+            }, 5000);
+        }, 900000);
+    </script>
 </body>
-</html>
