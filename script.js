@@ -23,6 +23,11 @@ document.getElementById('report-form').addEventListener('submit', function(e) {
   doc.setFont("courier", "normal");
   doc.setFontSize(14);
 
+  // Border around the PDF
+  doc.setDrawColor(0, 0, 0); // Black border
+  doc.setLineWidth(1);
+  doc.rect(10, 10, 190, 270); // X, Y, Width, Height
+
   // Header
   doc.text("Department of Public Safety", 20, 20);
   doc.text("Missing Person Report", 20, 30);
