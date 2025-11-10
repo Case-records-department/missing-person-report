@@ -1,7 +1,8 @@
 body {
   font-family: 'Courier New', monospace;
-  background-color: #f8f9fa;
+  background-color: #fdf6d3; /* Government-style pale yellow */
   color: #111;
+  animation: flicker 3s infinite; /* Flicker effect */
 }
 
 header {
@@ -43,6 +44,16 @@ header h1 {
   }
 }
 
+/* Flicker effect for body */
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    opacity: 0.8;
+  }
+}
+
 form {
   max-width: 600px;
   margin: 20px auto;
@@ -54,6 +65,16 @@ form {
 
 label {
   font-weight: bold;
+  display: block;
+  margin-top: 10px;
+}
+
+input, select, textarea {
+  width: 100%;
+  margin-top: 5px;
+  padding: 8px;
+  font-family: 'Courier New', monospace;
+  border: 1px solid #000;
 }
 
 button {
@@ -62,21 +83,13 @@ button {
   padding: 10px 20px;
   border: none;
   cursor: pointer;
+  margin-top: 20px;
 }
 
 h3 {
   margin-top: 20px;
   border-top: 1px solid #000;
   padding-top: 10px;
-}
-/* Flicker effect for body */
-@keyframes flicker {
-  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-    opacity: 1;
-  }
-  20%, 24%, 55% {
-    opacity: 0.8;
-  }
 }
 
 body {
