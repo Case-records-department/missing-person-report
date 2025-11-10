@@ -1,10 +1,14 @@
+/* Body styling with government-style yellow and flicker effect */
 body {
   font-family: 'Courier New', monospace;
-  background-color: #fdf6d3; /* Government-style pale yellow */
+  background-color: #fdf6d3; /* Pale government yellow */
   color: #111;
-  animation: flicker 3s infinite; /* Flicker effect */
+  animation: flicker 3s infinite;
+  margin: 0;
+  padding: 0;
 }
 
+/* Header styling */
 header {
   background-color: #222;
   color: #fff;
@@ -24,36 +28,21 @@ header h1 {
 }
 
 @keyframes glitch {
-  0% {
-    text-shadow: 2px 0 red, -2px 0 blue;
-  }
-  20% {
-    text-shadow: -2px 0 red, 2px 0 blue;
-  }
-  40% {
-    text-shadow: 2px 0 blue, -2px 0 red;
-  }
-  60% {
-    text-shadow: -2px 0 blue, 2px 0 red;
-  }
-  80% {
-    text-shadow: 2px 0 red, -2px 0 blue;
-  }
-  100% {
-    text-shadow: -2px 0 red, 2px 0 blue;
-  }
+  0% { text-shadow: 2px 0 red, -2px 0 blue; }
+  20% { text-shadow: -2px 0 red, 2px 0 blue; }
+  40% { text-shadow: 2px 0 blue, -2px 0 red; }
+  60% { text-shadow: -2px 0 blue, 2px 0 red; }
+  80% { text-shadow: 2px 0 red, -2px 0 blue; }
+  100% { text-shadow: -2px 0 red, 2px 0 blue; }
 }
 
 /* Flicker effect for body */
 @keyframes flicker {
-  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-    opacity: 1;
-  }
-  20%, 24%, 55% {
-    opacity: 0.8;
-  }
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.8; }
 }
 
+/* Form styling */
 form {
   max-width: 600px;
   margin: 20px auto;
@@ -63,6 +52,7 @@ form {
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
 
+/* Labels and inputs */
 label {
   font-weight: bold;
   display: block;
@@ -75,8 +65,10 @@ input, select, textarea {
   padding: 8px;
   font-family: 'Courier New', monospace;
   border: 1px solid #000;
+  box-sizing: border-box;
 }
 
+/* Button styling */
 button {
   background-color: #222;
   color: #fff;
@@ -84,14 +76,16 @@ button {
   border: none;
   cursor: pointer;
   margin-top: 20px;
+  font-family: 'Courier New', monospace;
 }
 
+button:hover {
+  background-color: #444;
+}
+
+/* Section headers */
 h3 {
   margin-top: 20px;
   border-top: 1px solid #000;
   padding-top: 10px;
-}
-
-body {
-  animation: flicker 3s infinite;
 }
