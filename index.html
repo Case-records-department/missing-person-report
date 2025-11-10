@@ -27,7 +27,7 @@
       background: #fff;
       border: 2px solid #000;
     }
-    label { display font-weight: bold; }
+   : bold; }
     input, select, textarea {
       width: 100%; margin-top: 5px; padding: 8px; border: 1px solid #000;
     }
@@ -93,10 +93,14 @@
   <div id="glitch-overlay">DON'T LOOK FOR THEM</div>
 
   <!-- jsPDF Library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.cript>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jsp</script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const caseNumber = "CASE-" + Math.floor(100000 + Math.random() * 900000);
+      function generateCaseNumber() {
+        return "CASE-" + Math.floor(100000 + Math.random() * 900000);
+      }
+
+      let caseNumber = generateCaseNumber();
       document.getElementById('case-number').textContent = caseNumber;
 
       document.getElementById('report-form').addEventListener('submit', function(e) {
@@ -174,9 +178,12 @@
 
         doc.save(`${data.caseNumber}_report.pdf`);
 
-        // ✅ Reset form and show success message
+        // ✅ Reset form and regenerate case number
         e.target.reset();
-        alert("PDF generated successfully! You can now enter new details.");
+        caseNumber = generateCaseNumber();
+        document.getElementById('case-number').textContent = caseNumber;
+
+        alert("PDF generated successfully! New case number assigned.");
       });
 
       function triggerGlitch() {
