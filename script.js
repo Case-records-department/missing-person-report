@@ -14,6 +14,8 @@ document.getElementById('report-form').addEventListener('submit', function(e) {
     hairColor: e.target['hair-color'].value,
     eyeColor: e.target['eye-color'].value,
     build: e.target['build'].value,
+    heightFeet: e.target['height-feet'].value,
+    heightInches: e.target['height-inches'].value,
     physiology: e.target.physiology.value,
     intelligence: e.target.intelligence.value,
     heart: e.target.heart.value,
@@ -53,13 +55,14 @@ document.getElementById('report-form').addEventListener('submit', function(e) {
   doc.text(`Hair Color: ${data.hairColor}`, 20, 130);
   doc.text(`Eye Color: ${data.eyeColor}`, 20, 135);
   doc.text(`Build: ${data.build}`, 20, 140);
+  doc.text(`Height: ${data.heightFeet}' ${data.heightInches}"`, 20, 145);
 
   // Characteristics
-  doc.text("Characteristics:", 20, 150);
-  doc.text(`Physiology: ${data.physiology}`, 20, 160);
-  doc.text(`Intelligence: ${data.intelligence}`, 20, 170);
-  doc.text(`Heart: ${data.heart}`, 20, 180);
-  doc.text(`Soul: ${data.soul}`, 20, 190);
+  doc.text("Characteristics:", 20, 155);
+  doc.text(`Physiology: ${data.physiology}`, 20, 165);
+  doc.text(`Intelligence: ${data.intelligence}`, 20, 175);
+  doc.text(`Heart: ${data.heart}`, 20, 185);
+  doc.text(`Soul: ${data.soul}`, 20, 195);
 
   // CONFIDENTIAL Stamp
   doc.setTextColor(255, 0, 0); // Red color
