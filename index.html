@@ -27,7 +27,7 @@
       background: #fff;
       border: 2px solid #000;
     }
-    label { display: block; margin-top: 10px; font-weight: bold; }
+    label { display font-weight: bold; }
     input, select, textarea {
       width: 100%; margin-top: 5px; padding: 8px; border: 1px solid #000;
     }
@@ -93,7 +93,7 @@
   <div id="glitch-overlay">DON'T LOOK FOR THEM</div>
 
   <!-- jsPDF Library -->
-  https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.cript>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const caseNumber = "CASE-" + Math.floor(100000 + Math.random() * 900000);
@@ -173,6 +173,10 @@
         doc.text("NOTICE: This document is classified. Unauthorized disclosure is punishable by law.", 20, 210);
 
         doc.save(`${data.caseNumber}_report.pdf`);
+
+        // ✅ Reset form and show success message
+        e.target.reset();
+        alert("PDF generated successfully! You can now enter new details.");
       });
 
       function triggerGlitch() {
