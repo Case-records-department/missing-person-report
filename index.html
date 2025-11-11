@@ -91,6 +91,55 @@
       border-top: 1px solid #000;
       padding-top: 10px;
     }
+        /* Glitch effect styles */
+.glitching {
+  background-color: black !important;
+  color: red !important;
+  animation: shake 0.1s infinite;
+}
+
+.glitching input {
+  background-color: black !important;
+  color: red !important;
+}
+
+.glitch-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  color: red;
+  font-size: 3em;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.glitch-overlay.active {
+  opacity: 1;
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+ % { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
     </style>
 </head>
 <body>
@@ -119,7 +168,7 @@
 
         <button type="submit">Generate PDF</button>
     </form>
-
+    <div class="glitch-overlay" id="glitch-overlay">DON'T LOOK FOR THEM</div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
         const caseNumber = "CASE-" + Math.floor(100000 + Math.random() * 900000);
@@ -192,6 +241,18 @@
 
             doc.save(`${data.caseNumber}_report.pdf`);
         });
+        function triggerGlitch() {
+  document.body.classList.add("glitching");
+  document.getElementById("glitch-overlay").classList.add("active");
+
+  setTimeout(() => {
+    document.body.classList.remove("glitching");
+    document.getElementById("glitch-overlay").classList.remove("active");
+  }, 5000); // glitch lasts 5 seconds
+}
+
+// Trigger every 15 minutes
+setInterval(triggerGlitch, 15 * 60 * 1000);
     </script>
 </body>
 </html>
