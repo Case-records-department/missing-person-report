@@ -1,199 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Missing Person Report</title>
-  <style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Missing Person Report</title>
+    <style>
+        /* Body styling with government-style yellow and flicker effect */
     body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      background-color: white;
-      color: black;
-      transition: all 0.5s ease;
+      font-family: 'Courier New', monospace;
+      background-color: #fdf6d3; /* Pale government yellow */
+      color: #111;
+      animation: flicker 3s infinite;
+      margin: 0;
+      padding: 0;
     }
-    h1, h2, h4 {
-      margin-bottom: 10px;
+
+    header {
+      background-color: #222;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.5em;
+      letter-spacing: 1px;
     }
-    form p {
-      margin: 8px 0;
+
+    /* Glitch effect for header text */
+    header h1 {
+      position: relative;
+      color: #fff;
+      font-size: 2em;
+      text-transform: uppercase;
+      animation: glitch 1s infinite;
     }
-    input {
-      width: 200px;
-      padding: 5px;
+
+    @keyframes glitch {
+      0% { text-shadow: 2px 0 red, -2px 0 blue; }
+      20% { text-shadow: -2px 0 red, 2px 0 blue; }
+      40% { text-shadow: 2px 0 blue, -2px 0 red; }
+      60% { text-shadow: -2px 0 blue, 2px 0 red; }
+      80% { text-shadow: 2px 0 red, -2px 0 blue; }
+      100% { text-shadow: -2px 0 red, 2px 0 blue; }
     }
+
+    /* Flicker effect for body */
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+      20%, 24%, 55% { opacity: 0.8; }
+    }
+
+    form {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border: 2px solid #000;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      margin-top: 5px;
+      padding: 8px;
+      font-family: 'Courier New', monospace;
+      border: 1px solid #000;
+      box-sizing: border-box;
+    }
+
     button {
-      margin-top: 15px;
-      padding: 10px 15px;
-      background-color: #007bff;
-      color: white;
+      background-color: #222;
+      color: #fff;
+      padding: 10px 20px;
       border: none;
       cursor: pointer;
+      margin-top: 20px;
+      font-family: 'Courier New', monospace;
     }
+
     button:hover {
-      background-color: #0056b3;
+      background-color: #444;
     }
 
-    /* Flicker effect */
-    h1.flicker {
-      animation: flicker 2s infinite;
+    h3 {
+      margin-top: 20px;
+      border-top: 1px solid #000;
+      padding-top: 10px;
     }
-    @keyframes flicker {
-      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-        opacity: 1;
-      }
-      20%, 24%, 55% {
-        opacity: 0;
-      }
-    }
-
-    /* Glitch effect */
-    .glitching {
-      background-color: black !important;
-      color: red !important;
-      animation: shake 0.1s infinite;
-    }
-    .glitching input {
-      background-color: black !important;
-      color: red !important;
-    }
-    .glitch-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.9);
-      color: red;
-      font-size: 3em;
-      font-weight: bold;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      z-index: 9999;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    .glitch-overlay.active {
-      opacity: 1;
-    }
-    @keyframes shake {
-      0% { transform: translate(1px, 1px) rotate(0deg); }
-      10% { transform: translate(-1px, -2px) rotate(-1deg); }
-      20% { transform: translate(-3px, 0px) rotate(1deg); }
-      30% { transform: translate(3px, 2px) rotate(0deg); }
-      40% { transform: translate(1px, -1px) rotate(1deg); }
-      50% { transform: translate(-1px, 2px) rotate(-1deg); }
-      60% { transform: translate(-3px, 1px) rotate(0deg); }
-      70% { transform: translate(3px, 1px) rotate(-1deg); }
-      80% { transform: translate(-1px, -1px) rotate(1deg); }
-      90% { transform: translate(1px, 2px) rotate(0deg); }
-      100% { transform: translate(1px, -2px) rotate(-1deg); }
-    }
-  </style>
+    </style>
 </head>
 <body>
-  <h1 class="flicker">Missing Person Report</h1>
-  <h2>Department of Public Safety</h2>
-  <p id="case-number"></p>
+    <h1>Missing Person Report</h1>
+    <h2>Department of Public Safety</h2>
+    <p id="case-number"></p>
 
-  <form id="report-form">
-    <p>Full Name: <input type="text" name="name" required></p>
-    <p>Age: <input type="text" name="age" required></p>
-    <p>Last Seen Location: <input type="text" name="location" required></p>
-    <p>Description: <input type="text" name="description"></p>
+    <form id="report-form">
+        <p>Full Name: <input type="text" name="name" required></p>
+        <p>Age: <input type="text" name="age" required></p>
+        <p>Last Seen Location: <input type="text" name="location" required></p>
+        <p>Description: <input type="text" name="description"></p>
 
-    <h4>Physical Description</h4>
-    <p>Hair Color: <input type="text" name="hair-color"></p>
-    <p>Eye Color: <input type="text" name="eye-color"></p>
-    <p>Build: <input type="text" name="build"></p>
-    <p>Height (Feet): <input type="text" name="height-feet"></p>
-    <p>Height (Inches): <input type="text" name="height-inches"></p>
+        <h4>Physical Description</h4>
+        <p>Hair Color: <input type="text" name="hair-color"></p>
+        <p>Eye Color: <input type="text" name="eye-color"></p>
+        <p>Build: <input type="text" name="build"></p>
+        <p>Height (Feet): <input type="text" name="height-feet"></p>
+        <p>Height (Inches): <input type="text" name="height-inches"></p>
 
-    <h4>Characteristics</h4>
-    <p>Physiology: <input type="text" name="physiology"></p>
-    <p>Intelligence: <input type="text" name="intelligence"></p>
-    <p>Heart: <input type="text" name="heart"></p>
-    <p>Soul: <input type="text" name="soul"></p>
+        <h4>Characteristics</h4>
+        <p>Physiology: <input type="text" name="physiology"></p>
+        <p>Intelligence: <input type="text" name="intelligence"></p>
+        <p>Heart: <input type="text" name="heart"></p>
+        <p>Soul: <input type="text" name="soul"></p>
 
-    <button type="submit">Generate PDF</button>
-  </form>
+        <button type="submit">Generate PDF</button>
+    </form>
 
-  <div class="glitch-overlay" id="glitch-overlay">DON'T LOOK FOR THEM</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        const caseNumber = "CASE-" + Math.floor(100000 + Math.random() * 900000);
+        document.getElementById('case-number').textContent = "Case Number: " + caseNumber;
 
-  https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js</script>
-  <script>
-    const caseNumber = "CASE-" + Math.floor(100000 + Math.random() * 900000);
-    document.getElementById('case-number').textContent = "Case Number: " + caseNumber;
+        document.getElementById('report-form').addEventListener('submit', function(e) {
+            e.preventDefault();
 
-    document.getElementById('report-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const data = {
-        caseNumber: caseNumber,
-        name: e.target.name.value,
-        age: e.target.age.value,
-        location: e.target.location.value,
-        description: e.target.description.value,
-        hairColor: e.target['hair-color'].value,
-        eyeColor: e.target['eye-color'].value,
-        build: e.target['build'].value,
-        heightFeet: e.target['height-feet'].value,
-        heightInches: e.target['height-inches'].value,
-        physiology: e.target.physiology.value,
-        intelligence: e.target.intelligence.value,
-        heart: e.target.heart.value,
-        soul: e.target.soul.value
-      };
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
-      doc.setFont("courier", "normal");
-      doc.setFontSize(14);
-      doc.setDrawColor(0, 0, 0);
-      doc.setLineWidth(1);
-      doc.rect(10, 10, 190, 270);
-      doc.text("Department of Public Safety", 20, 20);
-      doc.text("Missing Person Report", 20, 30);
-      doc.text("Case Number: " + data.caseNumber, 20, 40);
-      doc.text("Officer:", 20, 50);
-      doc.rect(50, 45, 100, 10, "F");
-      doc.text("Date:", 20, 60);
-      doc.rect(50, 55, 100, 10, "F");
-      doc.text("Location:", 20, 70);
-      doc.rect(60, 65, 100, 10, "F");
-      doc.text("Name: " + data.name, 20, 90);
-      doc.text("Age: " + data.age, 20, 100);
-      doc.text("Last Seen: " + data.location, 20, 110);
-      doc.text("Description: " + data.description, 20, 120);
-      doc.text("Hair Color: " + data.hairColor, 20, 130);
-      doc.text("Eye Color: " + data.eyeColor, 20, 135);
-      doc.text("Build: " + data.build, 20, 140);
-      doc.text("Height: " + data.heightFeet + "' " + data.heightInches + '"', 20, 145);
-      doc.text("Characteristics:", 20, 155);
-      doc.text("Physiology: " + data.physiology, 20, 165);
-      doc.text("Intelligence: " + data.intelligence, 20, 175);
-      doc.text("Heart: " + data.heart, 20, 185);
-      doc.text("Soul: " + data.soul, 20, 195);
-      doc.setTextColor(255, 0, 0);
-      doc.setFontSize(40);
-      doc.text("CONFIDENTIAL", 35, 120, { angle: 45 });
-      doc.setTextColor(0, 0, 0);
-      doc.setFontSize(10);
-      doc.text("NOTICE: This document is classified. Unauthorized disclosure is punishable by law.", 20, 210);
-      doc.save(data.caseNumber + "_report.pdf");
-    });
+            const data = {
+                caseNumber: caseNumber,
+                name: e.target.name.value,
+                age: e.target.age.value,
+                location: e.target.location.value,
+                description: e.target.description.value,
+                hairColor: e.target['hair-color'].value,
+                eyeColor: e.target['eye-color'].value,
+                build: e.target['build'].value,
+                heightFeet: e.target['height-feet'].value,
+                heightInches: e.target['height-inches'].value,
+                physiology: e.target.physiology.value,
+                intelligence: e.target.intelligence.value,
+                heart: e.target.heart.value,
+                soul: e.target.soul.value
+            };
 
-    function triggerGlitch() {
-      document.body.classList.add("glitching");
-      document.getElementById("glitch-overlay").classList.add("active");
-      setTimeout(() => {
-        document.body.classList.remove("glitching");
-        document.getElementById("glitch-overlay").classList.remove("active");
-      }, 5000);
-    }
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
 
-    setInterval(triggerGlitch, 15 * 60 * 1000); // every 15 minutes
-  </script>
+            doc.setFont("courier", "normal");
+            doc.setFontSize(14);
+
+            doc.setDrawColor(0, 0, 0);
+            doc.setLineWidth(1);
+            doc.rect(10, 10, 190, 270);
+
+            doc.text("Department of Public Safety", 20, 20);
+            doc.text("Missing Person Report", 20, 30);
+            doc.text(`Case Number: ${data.caseNumber}`, 20, 40);
+
+            doc.text("Officer:", 20, 50);
+            doc.rect(50, 45, 100, 10, "F");
+            doc.text("Date:", 20, 60);
+            doc.rect(50, 55, 100, 10, "F");
+            doc.text("Location:", 20, 70);
+            doc.rect(60, 65, 100, 10, "F");
+
+            doc.text(`Name: ${data.name}`, 20, 90);
+            doc.text(`Age: ${data.age}`, 20, 100);
+            doc.text(`Last Seen: ${data.location}`, 20, 110);
+            doc.text(`Description: ${data.description}`, 20, 120);
+
+            doc.text(`Hair Color: ${data.hairColor}`, 20, 130);
+            doc.text(`Eye Color: ${data.eyeColor}`, 20, 135);
+            doc.text(`Build: ${data.build}`, 20, 140);
+            doc.text(`Height: ${data.heightFeet}' ${data.heightInches}"`, 20, 145);
+
+            doc.text("Characteristics:", 20, 155);
+            doc.text(`Physiology: ${data.physiology}`, 20, 165);
+            doc.text(`Intelligence: ${data.intelligence}`, 20, 175);
+            doc.text(`Heart: ${data.heart}`, 20, 185);
+            doc.text(`Soul: ${data.soul}`, 20, 195);
+
+            doc.setTextColor(255, 0, 0);
+            doc.setFontSize(40);
+            doc.text("CONFIDENTIAL", 35, 120, { angle: 45 });
+            doc.setTextColor(0, 0, 0);
+
+            doc.setFontSize(10);
+            doc.text("NOTICE: This document is classified. Unauthorized disclosure is punishable by law.", 20, 210);
+
+            doc.save(`${data.caseNumber}_report.pdf`);
+        });
+    </script>
 </body>
 </html>
