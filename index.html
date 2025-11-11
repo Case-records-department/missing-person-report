@@ -5,206 +5,170 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Missing Person Report</title>
   <style>
+    /* Body styling with government-style yellow and flicker effect */
     body {
       font-family: 'Courier New', monospace;
-      background-color: #fdf6d3;
+      background-color: #fdf6d3; /* Pale government yellow */
       color: #111;
       animation: flicker 3s infinite;
       margin: 0;
       padding: 0;
     }
+
     header {
       background-color: #222;
       color: #fff;
       padding: 20px;
       text-align: center;
       font-size: 1.5em;
+      letter-spacing: 1px;
     }
+
+    /* Glitch effect for header text */
+    header h1 {
+      position: relative;
+      color: #fff;
+      font-size: 2em;
+      text-transform: uppercase;
+      animation: glitch 1s infinite;
+    }
+
+    @keyframes glitch {
+      0% { text-shadow: 2px 0 red, -2px 0 blue; }
+      20% { text-shadow: -2px 0 red, 2px 0 blue; }
+      40% { text-shadow: 2px 0 blue, -2px 0 red; }
+      60% { text-shadow: -2px 0 blue, 2px 0 red; }
+      80% { text-shadow: 2px 0 red, -2px 0 blue; }
+      100% { text-shadow: -2px 0 red, 2px 0 blue; }
+    }
+
+    /* Flicker effect for body */
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+      20%, 24%, 55% { opacity: 0.8; }
+    }
+
     form {
       max-width: 600px;
       margin: 20px auto;
       padding: 20px;
       background: #fff;
       border: 2px solid #000;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
     }
-    label { display: block; margin-top: 10px; font-weight: bold; }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+
     input, select, textarea {
-      width: 100%; margin-top: 5px; padding: 8px; border: 1px solid #000;
+      width: 100%;
+      margin-top: 5px;
+      padding: 8px;
+      font-family: 'Courier New', monospace;
+      border: 1px solid #000;
+      box-sizing: border-box;
     }
+
     button {
-      background-color: #222; color: #fff; padding: 10px 20px; margin-top: 20px;
-      border: none; cursor: pointer;
-    }
-    #glitch-overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: black; color: red; font-size: 4em; font-weight: bold;
-      display: flex; justify-content: center; align-items: center;
-      opacity: 0; z-index: 9999;
-    }
-
-    /* Flicker animation */
-    @keyframes flicker {
-      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
-      20%, 22%, 24%, 55% { opacity: 0.8; }
+      background-color: #222;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+      font-family: 'Courier New', monospace;
     }
 
-    /* Glitch text animation */
-    @keyframes glitchText {
-      0% { transform: translate(0, 0); }
-      20% { transform: translate(-5px, 5px); }
-      40% { transform: translate(5px, -5px); }
-      60% { transform: translate(-5px, -5px); }
-      80% { transform: translate(5px, 5px); }
-      100% { transform: translate(0, 0); }
+    button:hover {
+      background-color: #444;
+    }
+
+    h3 {
+      margin-top: 20px;
+      border-top: 1px solid #000;
+      padding-top: 10px;
     }
   </style>
 </head>
 <body>
-  <header><h1>Missing Person Report</h1></header>
+  <header>
+    <h1>Missing Person Report</h1>
+  </header>
+
   <form id="report-form">
     <h2>Department of Public Safety</h2>
     <p>Case Number: <span id="case-number"></span></p>
-    <label for="name">Full Name:</label><input type="text" id="name" name="name" required>
-    <label for="age">Age:</label><input type="number" id="age" name="age" required>
-    <label for="location">Last Seen Location:</label><input type="text" id="location" name="location" required>
-    <label for="description">General Description:</label><textarea id="description" name="description"></textarea>
+
+    <!-- Basic Info -->
+    <label for="name">Full Name:</label>
+    <input type="text" name="name" id="name" required>
+
+    <label for="age">Age:</label>
+    <input type="number" name="age" id="age" required>
+
+    <label for="location">Last Seen Location:</label>
+    <input type="text" name="location" id="location" required>
+
+    <label for="description">General Description:</label>
+    <textarea name="description" id="description" rows="3"></textarea>
+
+    <!-- Physical Description -->
     <h3>Physical Description</h3>
+
     <label for="hair-color">Hair Color:</label>
-    <select id="hair-color" name="hair-color">
-      <option>Black</option><option>Brown</option><option>Blonde</option><option>Red</option><option>Gray</option>
+    <select name="hair-color" id="hair-color">
+      <option value="black">Black</option>
+      <option value="brown">Brown</option>
+      <option value="blonde">Blonde</option>
+      <option value="red">Red</option>
+      <option value="gray">Gray</option>
     </select>
+
     <label for="eye-color">Eye Color:</label>
-    <select id="eye-color" name="eye-color">
-      <option>Brown</option><option>Blue</option><option>Green</option><option>Gray</option><option>Hazel</option>
+    <select name="eye-color" id="eye-color">
+      <option value="brown">Brown</option>
+      <option value="blue">Blue</option>
+      <option value="green">Green</option>
+      <option value="gray">Gray</option>
+      <option value="hazel">Hazel</option>
     </select>
+
     <label for="build">Build:</label>
-    <select id="build" name="build">
-      <option>Slim</option><option>Average</option><option>Athletic</option><option>Heavy</option>
+    <select name="build" id="build">
+      <option value="slim">Slim</option>
+      <option value="average">Average</option>
+      <option value="athletic">Athletic</option>
+      <option value="heavy">Heavy</option>
     </select>
-    <label for="height-feet">Height (Feet):</label><input type="number" id="height-feet" name="height-feet">
-    <label for="height-inches">Height (Inches):</label><input type="number" id="height-inches" name="height-inches">
+
+    <label for="height-feet">Height (Feet):</label>
+    <input type="number" name="height-feet" id="height-feet" min="1" max="8">
+
+    <label for="height-inches">Height (Inches):</label>
+    <input type="number" name="height-inches" id="height-inches" min="0" max="11">
+
+    <!-- Characteristics -->
     <h3>Characteristics</h3>
-    <label for="physiology">Physiology:</label><input type="text" id="physiology" name="physiology">
-    <label for="intelligence">Intelligence:</label><input type="text" id="intelligence" name="intelligence">
-    <label for="heart">Heart:</label><input type="text" id="heart" name="heart">
-    <label for="soul">Soul:</label><input type="text" id="soul" name="soul">
+    <label for="physiology">Physiology:</label>
+    <input type="text" name="physiology" id="physiology">
+
+    <label for="intelligence">Intelligence:</label>
+    <input type="text" name="intelligence" id="intelligence">
+
+    <label for="heart">Heart:</label>
+    <input type="text" name="heart" id="heart">
+
+    <label for="soul">Soul:</label>
+    <input type="text" name="soul" id="soul">
+
     <button type="submit">Generate PDF</button>
   </form>
-  <div id="glitch-overlay">DON'T LOOK FOR THEM</div>
 
-  <!-- jsPDF Library -->
-  <script src="https://cdnjs.cloudflare.com/ajax.5.1/jspdf.umd.min.js</script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      function generateCaseNumber() {
-        return "CASE-" + Math.floor(100000 + Math.random() * 900000);
-      }
-
-      let caseNumber = generateCaseNumber();
-      document.getElementById('case-number').textContent = caseNumber;
-
-      document.getElementById('report-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const data = {
-          caseNumber: caseNumber,
-          name: e.target.name.value,
-          age: e.target.age.value,
-          location: e.target.location.value,
-          description: e.target.description.value,
-          hairColor: e.target['hair-color'].value,
-          eyeColor: e.target['eye-color'].value,
-          build: e.target['build'].value,
-          heightFeet: e.target['height-feet'].value,
-          heightInches: e.target['height-inches'].value,
-          physiology: e.target.physiology.value,
-          intelligence: e.target.intelligence.value,
-          heart: e.target.heart.value,
-          soul: e.target.soul.value
-        };
-
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-
-        doc.setFont("courier", "normal");
-        doc.setFontSize(14);
-
-        // Border
-        doc.setDrawColor(0, 0, 0);
-        doc.setLineWidth(1);
-        doc.rect(10, 10, 190, 270);
-
-        // Header
-        doc.text("Department of Public Safety", 20, 20);
-        doc.text("Missing Person Report", 20, 30);
-        doc.text(`Case Number: ${data.caseNumber}`, 20, 40);
-
-        // Redacted fields
-        doc.text("Officer:", 20, 50);
-        doc.rect(50, 45, 100, 10, "F");
-        doc.text("Date:", 20, 60);
-        doc.rect(50, 55, 100, 10, "F");
-        doc.text("Location:", 20, 70);
-        doc.rect(60, 65, 100, 10, "F");
-
-        // Victim Info
-        doc.text(`Name: ${data.name}`, 20, 90);
-        doc.text(`Age: ${data.age}`, 20, 100);
-        doc.text(`Last Seen: ${data.location}`, 20, 110);
-        doc.text(`Description: ${data.description}`, 20, 120);
-
-        // Physical Description
-        doc.text(`Hair Color: ${data.hairColor}`, 20, 130);
-        doc.text(`Eye Color: ${data.eyeColor}`, 20, 135);
-        doc.text(`Build: ${data.build}`, 20, 140);
-        doc.text(`Height: ${data.heightFeet}' ${data.heightInches}"`, 20, 145);
-
-        // Characteristics
-        doc.text("Characteristics:", 20, 155);
-        doc.text(`Physiology: ${data.physiology}`, 20, 165);
-        doc.text(`Intelligence: ${data.intelligence}`, 20, 175);
-        doc.text(`Heart: ${data.heart}`, 20, 185);
-        doc.text(`Soul: ${data.soul}`, 20, 195);
-
-        // CONFIDENTIAL Stamp
-        doc.setTextColor(255, 0, 0);
-        doc.setFontSize(40);
-        doc.text("CONFIDENTIAL", 35, 120, { angle: 45 });
-        doc.setTextColor(0, 0, 0);
-
-        // Disclaimer
-        doc.setFontSize(10);
-        doc.text("NOTICE: This document is classified. Unauthorized disclosure is punishable by law.", 20, 210);
-
-        doc.save(`${data.caseNumber}_report.pdf`);
-
-        // Reset form and regenerate case number
-        e.target.reset();
-        caseNumber = generateCaseNumber();
-        document.getElementById('case-number').textContent = caseNumber;
-
-        alert("PDF generated successfully! New case number assigned.");
-      });
-
-      function triggerGlitch() {
-        const overlay = document.getElementById('glitch-overlay');
-        overlay.style.opacity = '1';
-        overlay.style.animation = 'glitchText 0.2s infinite';
-        document.body.style.backgroundColor = 'red';
-        document.body.style.color = 'black';
-        document.querySelector('header').style.backgroundColor = 'black';
-        document.querySelector('header').style.color = 'red';
-        setTimeout(() => {
-          overlay.style.opacity = '0';
-          overlay.style.animation = 'none';
-          document.body.style.backgroundColor = '#fdf6d3';
-          document.body.style.color = '#111';
-          document.querySelector('header').style.backgroundColor = '#222';
-          document.querySelector('header').style.color = '#fff';
-        }, 5000);
-      }
-      setInterval(triggerGlitch, 15 * 60 * 1000);
-    });
-  </script>
+  <!-- Scripts -->
+  https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js
+  script.js</script>
 </body>
 </html>
